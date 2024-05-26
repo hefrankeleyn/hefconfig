@@ -1,0 +1,17 @@
+### list
+GET http://localhost:9129/hefConfigController/list?capp=app01&cenv=dev&cnamespace=application
+Accept: application/json
+
+### update
+POST http://localhost:9129/hefConfigController/update?capp=app01&cenv=dev&cnamespace=application
+Content-Type: application/json
+
+{
+"tc": "25",
+"hef.a": "dev02",
+"hef.b": "test02"
+}
+
+### version
+GET http://localhost:9129/hefConfigController/version?capp=app01&cenv=dev&cnamespace=application
+Accept: application/json

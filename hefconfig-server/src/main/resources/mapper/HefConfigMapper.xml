@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.hefrankeleyn.hefconfigserver.dao.HefConfigMapper">
+
+    <resultMap id="rm_Configs" type="io.github.hefrankeleyn.hefconfigserver.beans.Configs">
+        <result column="capp" property="capp"/>
+        <result column="cenv" property="cenv"/>
+        <result column="cnamespace" property="cnamespace"/>
+        <result column="ckey" property="ckey"/>
+        <result column="cvalue" property="cvalue"/>
+    </resultMap>
+
+    <select id="findConfigsList" resultMap="rm_Configs">
+        select capp,cenv,cnamespace,ckey,cvalue from configs
+        where capp=#{capp} and cenv=#{cenv} and cnamespace=#{cnamespace}
+    </select>
+
+    <select id="findConfigs" resultMap="rm_Configs">
+        select capp,cenv,cnamespace,ckey,cvalue from configs
+        where capp=#{capp} and cenv=#{cenv} and cnamespace=#{cnamespace} and ckey=#{ckey}
+    </select>
+
+    <insert id="insertConfigs" parameterType="io.github.hefrankeleyn.hefconfigserver.beans.Configs">
+        insert into configs(capp,cenv,cnamespace,ckey,cvalue)
+        values
+        (#{capp}, #{cenv}, #{cnamespace}, #{ckey}, #{cvalue})
+    </insert>
+
+    <update id="updateConfigs" parameterType="io.github.hefrankeleyn.hefconfigserver.beans.Configs">
+        update configs set cvalue=#{cvalue} where capp=#{capp} and cenv=#{cenv} and cnamespace=#{cnamespace} and ckey=#{ckey}
+    </update>
+
+    <select id="findConfigsVersion" resultType="Long">
+        select cversion from configs_version
+        where capp=#{capp} and cenv=#{cenv} and cnamespace=#{cnamespace}
+    </select>
+
+    <insert id="insertConfigsVersion">
+        insert into configs_version
+        (capp,cenv,cnamespace,cversion)
+        values
+        (#{capp}, #{cenv}, #{cnamespace}, #{cversion})
+    </insert>
+
+    <update id="updateConfigsVersion">
+        update configs_version set cversion=#{cversion}
+        where capp=#{capp} and cenv=#{cenv} and cnamespace=#{cnamespace}
+    </update>
+
+</mapper>
