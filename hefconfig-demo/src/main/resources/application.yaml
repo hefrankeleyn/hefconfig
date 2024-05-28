@@ -1,0 +1,11 @@
+server:
+  port: 8183
+spring:
+  application:
+    name: hefconfig-demo
+
+hef:
+  a: a001
+  b: b001
+  c: c001
+
