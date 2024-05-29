@@ -1,9 +1,7 @@
 package io.github.hefrankeleyn.hefconfig.client.service.impl;
 
-import io.github.hefrankeleyn.hefconfig.client.HefPropertySource;
 import io.github.hefrankeleyn.hefconfig.client.service.HefConfigService;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
