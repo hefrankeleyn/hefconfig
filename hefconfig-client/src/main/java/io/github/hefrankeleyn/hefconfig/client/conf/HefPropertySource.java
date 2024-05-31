@@ -1,8 +1,9 @@
-package io.github.hefrankeleyn.hefconfig.client;
+package io.github.hefrankeleyn.hefconfig.client.conf;
 
 
 import io.github.hefrankeleyn.hefconfig.client.service.HefConfigService;
 import org.springframework.core.env.EnumerablePropertySource;
+
 /**
  * @Date 2024/5/27
  * @Author lifei

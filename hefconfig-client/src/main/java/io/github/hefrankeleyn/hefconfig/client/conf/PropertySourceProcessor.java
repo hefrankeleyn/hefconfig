@@ -1,5 +1,6 @@
-package io.github.hefrankeleyn.hefconfig.client;
+package io.github.hefrankeleyn.hefconfig.client.conf;
 
+import io.github.hefrankeleyn.hefconfig.client.beans.ConfigMetas;
 import io.github.hefrankeleyn.hefconfig.client.service.HefConfigService;
 import io.github.hefrankeleyn.hefconfig.client.service.impl.HefConfigServiceImpl;
 import org.springframework.beans.BeansException;
@@ -35,12 +36,13 @@ public class PropertySourceProcessor implements BeanFactoryPostProcessor, Enviro
             return;
         }
         // todo, 通过http请求，从hefconfig-server中
-        Map<String, String> config = new HashMap();
-        config.put("hef.a", "hef-a-1001");
-        config.put("hef.b", "hef-b-1001");
-        config.put("hef.c", "hef-c-1001");
-        HefConfigService hefConfigService = new HefConfigServiceImpl(config);
-        HefPropertySource hefPropertySource = new HefPropertySource(HEF_PROPERTY_SOURCE, hefConfigService);
+        String capp = environment.getProperty("hefconfig.app", "app01");
+        String cenv = environment.getProperty("hefconfig.env", "dev");
+        String cnamespace = environment.getProperty("hefconfig.namespace", "application");
+        String cconfigServer = environment.getProperty("hefconfig.configServer", "http://localhost:9129");
+        ConfigMetas configMetas = new ConfigMetas(capp, cenv, cnamespace, cconfigServer);
+        HefConfigService defaultHefConfigService = HefConfigService.getDefault(configMetas);
+        HefPropertySource hefPropertySource = new HefPropertySource(HEF_PROPERTY_SOURCE, defaultHefConfigService);
         // 假如有多套环境变量，就可以把它们统一放到CompositePropertySource里面
         CompositePropertySource compositePropertySource = new CompositePropertySource(HEF_PROPERTY_SOURCES);
         compositePropertySource.addPropertySource(hefPropertySource);

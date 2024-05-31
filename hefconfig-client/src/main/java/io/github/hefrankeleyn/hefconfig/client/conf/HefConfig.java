@@ -1,6 +1,5 @@
 package io.github.hefrankeleyn.hefconfig.client.conf;
 
-import io.github.hefrankeleyn.hefconfig.client.PropertySourceProcessor;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
