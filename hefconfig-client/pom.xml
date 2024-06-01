@@ -19,6 +19,7 @@
 		<utils.version>0.0.2</utils.version>
 		<guava.version>33.0.0-jre</guava.version>
 		<gson.version>2.10.1</gson.version>
+		<spring-cloud-context.version>4.1.2</spring-cloud-context.version>
 	</properties>
 
 	<dependencies>
@@ -52,6 +53,12 @@
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-context</artifactId>
+			<version>${spring-cloud-context.version}</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

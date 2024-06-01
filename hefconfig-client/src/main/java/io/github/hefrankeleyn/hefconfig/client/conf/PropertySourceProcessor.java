@@ -6,6 +6,8 @@ import io.github.hefrankeleyn.hefconfig.client.service.impl.HefConfigServiceImpl
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
@@ -21,9 +23,10 @@ import java.util.Map;
  * @Date 2024/5/28
  * @Author lifei
  */
-public class PropertySourceProcessor implements BeanFactoryPostProcessor, EnvironmentAware, PriorityOrdered {
+public class PropertySourceProcessor implements BeanFactoryPostProcessor, EnvironmentAware, ApplicationContextAware, PriorityOrdered {
 
     private Environment environment;
+    private ApplicationContext applicationContext;
 
     private static final String HEF_PROPERTY_SOURCES = "hefPropertySources";
     private static final String HEF_PROPERTY_SOURCE = "hefPropertySource";
@@ -41,7 +44,7 @@ public class PropertySourceProcessor implements BeanFactoryPostProcessor, Enviro
         String cnamespace = environment.getProperty("hefconfig.namespace", "application");
         String cconfigServer = environment.getProperty("hefconfig.configServer", "http://localhost:9129");
         ConfigMetas configMetas = new ConfigMetas(capp, cenv, cnamespace, cconfigServer);
-        HefConfigService defaultHefConfigService = HefConfigService.getDefault(configMetas);
+        HefConfigService defaultHefConfigService = HefConfigService.getDefault(applicationContext, configMetas);
         HefPropertySource hefPropertySource = new HefPropertySource(HEF_PROPERTY_SOURCE, defaultHefConfigService);
         // 假如有多套环境变量，就可以把它们统一放到CompositePropertySource里面
         CompositePropertySource compositePropertySource = new CompositePropertySource(HEF_PROPERTY_SOURCES);
@@ -57,5 +60,10 @@ public class PropertySourceProcessor implements BeanFactoryPostProcessor, Enviro
     @Override
     public void setEnvironment(Environment environment) {
         this.environment = environment;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }

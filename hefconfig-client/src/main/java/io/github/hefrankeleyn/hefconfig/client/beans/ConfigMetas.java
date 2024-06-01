@@ -1,6 +1,7 @@
 package io.github.hefrankeleyn.hefconfig.client.beans;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 /**
  * @Date 2024/5/31
@@ -21,6 +22,24 @@ public class ConfigMetas {
         this.cnamespace = cnamespace;
         this.cconfigServer = cconfigServer;
     }
+
+    public String genKey() {
+        return Strings.lenientFormat("%s_%s_%s", this.getCapp(), this.getCenv(), this.getCnamespace());
+    }
+
+    public String listPath() {
+        return path("list");
+    }
+
+    public String versionPath() {
+        return path("version");
+    }
+
+    public String path(String context) {
+        return  Strings.lenientFormat("%s/hefConfigController/%s?capp=%s&cenv=%s&cnamespace=%s",
+                this.getCconfigServer(), context, this.getCapp(), this.getCenv(), this.getCnamespace());
+    }
+
 
     public String getCapp() {
         return capp;
