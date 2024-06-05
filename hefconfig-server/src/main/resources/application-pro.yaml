@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hefconfig?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: hef2024configus
+    password: hef2024configps
+#  sql:
+#    init:
+#      schema-locations: classpath:sql/db.sql
+#      mode: always

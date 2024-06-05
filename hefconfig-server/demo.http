@@ -21,3 +21,26 @@ Accept: application/json
 ### demo
 GET http://localhost:8183/demo
 Accept: application/json
+
+
+### update provider
+POST http://localhost:9129/hefConfigController/update?capp=app01&cenv=dev&cnamespace=application
+Content-Type: application/json
+
+{
+  "hefrpc.provider.metas.tc": "10",
+  "hefrpc.provider.metas.dc": "tj"
+}
+
+### status 9129
+GET http://localhost:9129/hefConfigController/status
+Accept: application/json
+
+
+### status 9130
+GET http://localhost:9130/hefConfigController/status
+Accept: application/json
+
+### status 9131
+GET http://localhost:9131/hefConfigController/status
+Accept: application/json

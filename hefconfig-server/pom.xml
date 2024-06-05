@@ -22,6 +22,7 @@
         <h2.version>2.2.224</h2.version>
         <mybatis-spring-boot-starter.version>3.0.3</mybatis-spring-boot-starter.version>
         <guava.version>33.0.0-jre</guava.version>
+        <mysql-connector-java.version>8.0.33</mysql-connector-java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -38,8 +39,13 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
-            <scope>runtime</scope>
-<!--            <scope>test</scope>-->
+<!--            <scope>runtime</scope>-->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>

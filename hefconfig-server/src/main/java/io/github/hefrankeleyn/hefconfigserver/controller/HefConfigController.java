@@ -1,6 +1,7 @@
 package io.github.hefrankeleyn.hefconfigserver.controller;
 
 import io.github.hefrankeleyn.hefconfigserver.beans.Configs;
+import io.github.hefrankeleyn.hefconfigserver.conf.DistributedLock;
 import io.github.hefrankeleyn.hefconfigserver.service.HefConfigService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/hefConfigController")
 public class HefConfigController {
+
+    @Resource
+    private DistributedLock distributedLock;
 
     @Resource
     private HefConfigService hefConfigService;
@@ -40,5 +44,10 @@ public class HefConfigController {
                  @RequestParam("cenv") String cenv,
                  @RequestParam("cnamespace") String cnamespace) {
         return hefConfigService.version(capp, cenv, cnamespace);
+    }
+
+    @RequestMapping(value = "/status", method = RequestMethod.GET)
+    public boolean status() {
+        return distributedLock.getLocked();
     }
 }

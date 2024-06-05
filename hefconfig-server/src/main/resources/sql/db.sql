@@ -19,3 +19,12 @@ create table if not exists configs_version (
 );
 
 
+create table if not exists locks (
+   lid int(11) primary key not null,
+   lname varchar(255) not null
+);
+
+insert into locks(lid, lname) values(1, 'hefconfig-server');
+
+
+
