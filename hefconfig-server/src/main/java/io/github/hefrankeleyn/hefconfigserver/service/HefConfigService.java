@@ -1,6 +1,7 @@
 package io.github.hefrankeleyn.hefconfigserver.service;
 
 import io.github.hefrankeleyn.hefconfigserver.beans.Configs;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.List;
 import java.util.Map;
@@ -20,5 +21,7 @@ public interface HefConfigService {
 
     Long version(String capp, String cenv, String cnamespace);
     Long updateOrInsertVersion(String capp, String cenv, String cnamespace, Long version);
+
+    DeferredResult<Long> deferredResultVersion(String capp, String cenv, String cnamespace);
 
 }

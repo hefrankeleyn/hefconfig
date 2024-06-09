@@ -35,6 +35,10 @@ public class ConfigMetas {
         return path("version");
     }
 
+    public String deferredResultVersionPath() {
+        return path("deferredResultVersion");
+    }
+
     public String path(String context) {
         return  Strings.lenientFormat("%s/hefConfigController/%s?capp=%s&cenv=%s&cnamespace=%s",
                 this.getCconfigServer(), context, this.getCapp(), this.getCenv(), this.getCnamespace());

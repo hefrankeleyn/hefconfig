@@ -47,8 +47,8 @@ public class HefconfigDemoApplication {
 
 	@RequestMapping(value = "/demo", method = RequestMethod.GET)
 	public String demo() {
-		Map<String, ApplicationListener> listenerMap = applicationContext.getBeansOfType(ApplicationListener.class);
-		System.out.println(listenerMap);
+//		Map<String, ApplicationListener> listenerMap = applicationContext.getBeansOfType(ApplicationListener.class);
+//		System.out.println(listenerMap);
 		return Strings.lenientFormat("a: %s, b: %s, c: %s, hefConfig: %s", a, b, c, hefConfig);
 	}
 

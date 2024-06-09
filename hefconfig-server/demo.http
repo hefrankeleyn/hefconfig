@@ -8,19 +8,21 @@ Content-Type: application/json
 
 {
 "tc": "25",
-"hef.a": "dev02-111",
-"hef.b": "test02",
-"hef.c": "c-002-2"
+"hef.a": "dev02-31111111",
+"hef.b": "test02-11111",
+"hef.c": "c-002-23333"
 }
+
+### demo
+GET http://localhost:8183/demo
+Accept: application/json
+
 
 ### version
 GET http://localhost:9129/hefConfigController/version?capp=app01&cenv=dev&cnamespace=application
 Accept: application/json
 
 
-### demo
-GET http://localhost:8183/demo
-Accept: application/json
 
 
 ### update provider
